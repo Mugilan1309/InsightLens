@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsightLens | Post Auditor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>👁️ InsightLens</h1>
+            <p>AI-Powered Social Media Auditor</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>1. Visual Audit</h2>
+                <div class="upload-area" id="drop-zone">
+                    <p>Click or Drag Image Here</p>
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <img id="preview" src="" alt="Preview" class="hidden">
+                </div>
+                <div class="result" id="imgResult">
+                    <span class="label">Quality Score</span>
+                    <div class="progress-bar"><div id="imgBar" style="width: 0%"></div></div>
+                    <span class="value" id="imgScore">--/100</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>2. Caption Audit</h2>
+                <textarea id="captionInput" placeholder="Write your caption here..."></textarea>
+                <div class="result" id="txtResult">
+                    <span class="label">Prediction</span>
+                    <div class="badge" id="txtBadge">Waiting...</div>
+                    <span class="sub-label" id="txtConf">Confidence: --%</span>
+                </div>
+            </div>
+        </main>
+
+        <button id="auditBtn">🚀 Run Audit</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
