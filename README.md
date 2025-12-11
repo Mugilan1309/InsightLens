@@ -1,15 +1,15 @@
-# InsightLens 👁️
+# InsightLens
 
 **InsightLens** is a dual-pipeline deep learning tool designed to audit social media content. It analyzes image aesthetics and caption engagement potential to provide creators with a pre-publish quality check.
 
-## 🚀 Key Features
+## Key Features
 - **Visual Audit:** specific analysis of image technical quality (sharpness, exposure, composition) using **MobileNetV2**.
 - **Caption Audit:** specific analysis of text engagement potential using a **Bidirectional LSTM**.
 - **Full-Stack Deployment:** Served via **FastAPI** with a vanilla JS/CSS frontend for zero-dependency usage.
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 InsightLens does **not** use a multimodal approach (like CLIP). Instead, it uses a decoupled architecture to evaluate visual and textual signals independently.
 
 ### 1. Vision Module (InsightLens-Vision)
@@ -26,10 +26,31 @@ InsightLens does **not** use a multimodal approach (like CLIP). Instead, it uses
 
 ---
 
-## ⚠️ Important Limitations (Transparency)
+## Important Limitations
 * **No Contextual Awareness:** The system does not know if the caption matches the image. A picture of a cat with the caption "Nice car" will be scored purely on the photo quality of the cat and the engagement history of the words "Nice car".
 * **Twitter Bias:** The text model is trained on Twitter data. It prioritizes "Like-getting" patterns (short, punchy text) over "Comment-getting" patterns (questions).
 * **Subjectivity:** "Quality" is subjective. The Image model predicts the average human opinion (MOS), which may not align with specific artistic styles.
+
+---
+
+## Datasets Used
+### KonIQ-10k – Image Quality (CV)
+**Contains:**
+  10,073 natural images
+  Human-rated aesthetic/quality scores (MOS)
+  Large diversity in lighting, noise, composition
+**Purpose in this project:**
+  Train a model to estimate aesthetic quality in a way that aligns with human judgment.
+
+### Twitter Engagement Dataset – Caption Quality (NLP)
+**Contains:**
+Captions/tweets
+Associated engagement metrics (likes, retweets, replies)
+**Used to derive:**
+Low, Medium, or High engagement classes
+based on percentile thresholds.
+**Purpose in this project:**
+  Teach the model to understand textual patterns that correlate with user engagement.
 
 ---
 
@@ -77,3 +98,9 @@ Text Model: Accuracy ~56% (vs 33% random baseline) on 3-class engagement binning
 
 
 ---
+
+### NOTE: InsightLens currently evaluates visual aesthetic quality and textual engagement potential as separate modules. In future work, these could be fused for deeper content quality analysis.
+
+---
+
+**Mugilan Y**
